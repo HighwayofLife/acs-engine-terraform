@@ -1,3 +1,7 @@
+# acs-engine-terraform Fork
+
+This fork has been created to convert these terraform templates into extensible modules and support existing network infrastructure.
+
 # acs-engine-terraform
 Azure Container Service (ACS) Engine running K8s and provisioned by Terraform.
 
@@ -40,7 +44,7 @@ $ terraform apply -var-file="k8s.tfvars"
 If the provisioning takes a long time, you might get an error, which will likely be due to a timeout.  If you can see 16 items in the resource group in the Azure portal and the rest of the steps in the guide work, it should be all fine.
 
 We can now remotely connect to the cluster, to get the K8s remote configuration it's easier just to grab this from the master like so:
-  
+
 ```bash
 $ scp -i <SSH-KEY> azureuser@<MASTER-PUBLIC-IP>:~/.kube/config ~/.kube/config
 ```
@@ -49,7 +53,7 @@ In the above example you'll need to replace the placeholder values:
 
 * `SSH-KEY` - Private SSH key matching the public key given to the cluster during setup, e.g. `~/.ssh/id_rsa`;
 * `MASTER-PUBLIC-IP` - Find the master VM in the Azure portal, the public IP address will be attached to it.
- 
+
 Then test the connection using `kubectl get nodes`, which should return a list of our 2 nodes (1 master and 1 worker).  You're done, you can now deploy your own pods, for example:
 
 ```bash
